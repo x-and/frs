@@ -1,3 +1,5 @@
+USE db_frs;
+
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
@@ -19,7 +21,7 @@ DROP TABLE IF EXISTS `common_settings`;
 CREATE TABLE `common_settings` (
   `param_name` varchar(100) NOT NULL COMMENT 'Название параметра',
   `param_value` varchar(100) DEFAULT NULL COMMENT 'Значение параметра',
-  `param_comments` varchar(200) DEFAULT NULL COMMENT 'Описание параметра',
+  `param_comments` varchar(500) DEFAULT NULL COMMENT 'Описание параметра',
   `for_vstream` tinyint NOT NULL DEFAULT '1' COMMENT 'Признак параметра для видеопотока',
   `time_point` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'Время последнего изменения',
   PRIMARY KEY (`param_name`),

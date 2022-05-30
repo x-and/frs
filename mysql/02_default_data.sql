@@ -1,3 +1,5 @@
+USE db_frs;
+
 -- Параметры в таблице common_settings
 INSERT INTO common_settings (param_name, param_value, param_comments, for_vstream) VALUES ('alpha', '1.0', 'Альфа-коррекция', 1);
 INSERT INTO common_settings (param_name, param_value, param_comments, for_vstream) VALUES ('best-quality-interval-after', '2.0', 'Период в секундах после временной точки для поиска лучшего кадра', 1);
@@ -20,19 +22,19 @@ INSERT INTO common_settings (param_name, param_value, param_comments, for_vstrea
 INSERT INTO common_settings (param_name, param_value, param_comments, for_vstream) VALUES ('comments-url-image-error', 'Не удалось получить изображение.', null, 1);
 INSERT INTO common_settings (param_name, param_value, param_comments, for_vstream) VALUES ('delay-between-frames', '1.0', 'Интервал в секундах между захватами кадров', 1);
 INSERT INTO common_settings (param_name, param_value, param_comments, for_vstream) VALUES ('descriptor-inactivity-period', '400', 'Период неактивности дескриптора в днях, спустя который он удаляется', 1);
-INSERT INTO common_settings (param_name, param_value, param_comments, for_vstream) VALUES ('dnn-fc-inference-server', 'localhost:8000', 'Сервер для инференса получения класса лица (нормальное, в маске, в темных очках', 1);
+INSERT INTO common_settings (param_name, param_value, param_comments, for_vstream) VALUES ('dnn-fc-inference-server', 'triton:8000', 'Сервер для инференса получения класса лица (нормальное, в маске, в темных очках', 1);
 INSERT INTO common_settings (param_name, param_value, param_comments, for_vstream) VALUES ('dnn-fc-input-height', '192', 'Высота изображения для получения класса лица', 0);
 INSERT INTO common_settings (param_name, param_value, param_comments, for_vstream) VALUES ('dnn-fc-input-tensor-name', 'input.1', 'Название входного тензора для получения класса лица', 0);
 INSERT INTO common_settings (param_name, param_value, param_comments, for_vstream) VALUES ('dnn-fc-input-width', '192', 'Ширина изображения для получения класса лица', 0);
 INSERT INTO common_settings (param_name, param_value, param_comments, for_vstream) VALUES ('dnn-fc-model-name', 'genet', 'Название модели нейронной сети для получения класса лица', 0);
 INSERT INTO common_settings (param_name, param_value, param_comments, for_vstream) VALUES ('dnn-fc-output-size', '3', 'Количество элементов выходного массива для получения класса лица', 0);
 INSERT INTO common_settings (param_name, param_value, param_comments, for_vstream) VALUES ('dnn-fc-output-tensor-name', '419', 'Название выходного тензора для получения класса лица', 0);
-INSERT INTO common_settings (param_name, param_value, param_comments, for_vstream) VALUES ('dnn-fd-inference-server', 'localhost:8000', 'Сервер для инференса детекции лиц', 1);
+INSERT INTO common_settings (param_name, param_value, param_comments, for_vstream) VALUES ('dnn-fd-inference-server', 'triton:8000', 'Сервер для инференса детекции лиц', 1);
 INSERT INTO common_settings (param_name, param_value, param_comments, for_vstream) VALUES ('dnn-fd-input-height', '320', 'Высота изображения для детекции лиц', 0);
 INSERT INTO common_settings (param_name, param_value, param_comments, for_vstream) VALUES ('dnn-fd-input-tensor-name', 'input.1', 'Название входного тензора для детекции лиц', 0);
 INSERT INTO common_settings (param_name, param_value, param_comments, for_vstream) VALUES ('dnn-fd-input-width', '320', 'Ширина изображения для детекции лиц', 0);
 INSERT INTO common_settings (param_name, param_value, param_comments, for_vstream) VALUES ('dnn-fd-model-name', 'scrfd', 'Название модели нейронной сети для детекции лиц', 0);
-INSERT INTO common_settings (param_name, param_value, param_comments, for_vstream) VALUES ('dnn-fr-inference-server', 'localhost:8000', 'Сервер для инференса получения дескриптора', 1);
+INSERT INTO common_settings (param_name, param_value, param_comments, for_vstream) VALUES ('dnn-fr-inference-server', 'triton:8000', 'Сервер для инференса получения дескриптора', 1);
 INSERT INTO common_settings (param_name, param_value, param_comments, for_vstream) VALUES ('dnn-fr-input-height', '112', 'Высота изображения для получения дескриптора', 0);
 INSERT INTO common_settings (param_name, param_value, param_comments, for_vstream) VALUES ('dnn-fr-input-tensor-name', 'input.1', 'Название входного тензора для получения дескриптора', 0);
 INSERT INTO common_settings (param_name, param_value, param_comments, for_vstream) VALUES ('dnn-fr-input-width', '112', 'Ширина изображения для получения дескриптора', 0);
