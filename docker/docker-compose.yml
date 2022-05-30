@@ -1,0 +1,49 @@
+version: "3.3"
+services:
+  db:
+    image: "mysql:8.0"
+    hostname: db
+    environment:
+      MYSQL_ROOT_PASSWORD: frs_password
+      MYSQL_ROOT_HOST: "%"
+      MYSQL_DATABASE: db_frs
+      MYSQL_TCP_PORT: 3306
+    volumes:
+      - ./compose/mysql:/var/lib/mysql
+      - ../mysql/01_structure.sql:/docker-entrypoint-initdb.d/01_structure.sql
+      - ../mysql/02_default_data.sql:/docker-entrypoint-initdb.d/02_default_data.sql
+  triton:
+    image: "nvcr.io/nvidia/tritonserver:21.05-py3"
+    hostname: triton
+    ports:
+      - "8000:8000"
+      - "8001:8001"
+      - "8002:8002"
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+    volumes:
+      - ../opt/model_repository:/models
+    entrypoint: ["tritonserver", "--model-repository=/models"]
+  api:
+    image: "frs-builder"
+    ports:
+      - "9051:9051"
+    volumes:
+      - ./compose/logs:/opt/logs
+      - ./compose/screenshots:/opt/screenshots
+      - ./compose/events:/opt/events
+    environment:
+      MYSQL_DB: db_frs
+      MYSQL_PORT: 33060
+      MYSQL_USER: root
+      MYSQL_PASSWORD: frs_password
+    depends_on:
+      - db
+    links:
+      - triton
+      - db

@@ -1,0 +1,45 @@
+[frs]
+;Размер пула потоков. Если не указан или равен нулю, то используется std::thread::hardware_concurrency().
+;Количество CPU можно посмотреть, например, с помощью команд nproc, lscpu.
+thread_pool_size=4
+
+;HTTP порт
+http_port=9051
+
+;Путь для логов
+logs_path=/opt/logs
+
+;Абсолютный путь для хранения скриншотов
+screenshot_path=/opt/screenshots
+
+;Абсолютный путь для хранения информации о событиях
+events_path=/opt/events
+
+;Частичный URL для скриншотов со слэшем на конце
+http_server_screenshot_url=http://localhost:9051/static/screenshots/
+
+;Частичный URL для скриншотов событий (вызов API метода bestQuality) со слэшем на конце
+http_server_events_url=http://localhost:9051/static/events/
+
+
+[sql]
+;Адрес сервера
+host=$MYSQL_HOST
+
+;Порт сервера
+port=$MYSQL_PORT
+
+;Название БД
+db_name=$MYSQL_DB
+
+;Имя пользователя БД
+user_name=$MYSQL_USER
+
+;Пароль БД
+password=$MYSQL_PASSWORD
+
+;Размер пула соединений, обычно, в три раза больше, чем thread_pool_size
+pool_size=12
+
+;Идентификатор рабочего сервера FRS
+id_worker=1
