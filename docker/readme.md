@@ -10,9 +10,8 @@
  - run `cd docker && bash build.sh` from project root
 
 ## Create tensort models
- - download https://drive.google.com/file/d/1gnt6P3jaiwfevV4hreWHPu0Mive5VRyP/view?usp=sharing into `project_root/opt/frs/plan_source/arcface/glint360k_r50.onnx`
  - run `cd docker && bash create_models.sh` from project_root
 
 ## Run application
- - change variable in `docker-compose.yml`
+ - change variables in `docker-compose.yml`
  - run `cd docker && docker-compose up` from project root

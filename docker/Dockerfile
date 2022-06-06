@@ -73,24 +73,19 @@ RUN cd ~/opencv-4.5.5 \
   .. \
   && make -j`nproc`
 
-# Triton libs
+# new CMake for Triton client
 RUN cd ~/cmake-3.23.1 \
   && cmake . \
   && make -j`nproc` \
   && make install \
   && ldconfig
 
-# Triton server
+# Triton client
 RUN cd ~/triton-client \
-    && git checkout r21.05 \
+    && git checkout r22.04 \
     && mkdir build \
     && cd build \
-    && cmake -DCMAKE_CXX_STANDARD=20 -DCMAKE_INSTALL_PREFIX=`pwd`/install -DCMAKE_BUILD_TYPE=Release -DTRITON_ENABLE_CC_HTTP=ON -DTRITON_ENABLE_CC_GRPC=OFF -DTRITON_ENABLE_PERF_ANALYZER=OFF -DTRITON_ENABLE_PYTHON_HTTP=OFF -DTRITON_ENABLE_PYTHON_GRPC=OFF -DTRITON_ENABLE_GPU=OFF -DTRITON_ENABLE_EXAMPLES=OFF -DTRITON_ENABLE_TESTS=OFF -DTRITON_COMMON_REPO_TAG=r21.05 -DTRITON_THIRD_PARTY_REPO_TAG=r21.05 ..
-
-RUN cd ~/triton-client/build && make cc-clients -j`nproc` || echo 'it`s ok'
-
-# bug with clang compiler. need to replace std::move(table.str()) -> table.str() and retry make
-RUN sed -i 's/std::move(table.str())/table.str()/g' ~/triton-client/build/cc-clients/_deps/repo-common-src/src/table_printer.cc && cat ~/triton-client/build/cc-clients/_deps/repo-common-src/src/table_printer.cc
+    && cmake -DCMAKE_CXX_STANDARD=20 -DCMAKE_INSTALL_PREFIX=`pwd`/install -DCMAKE_BUILD_TYPE=Release -DTRITON_ENABLE_CC_HTTP=ON -DTRITON_ENABLE_CC_GRPC=OFF -DTRITON_ENABLE_PERF_ANALYZER=OFF -DTRITON_ENABLE_PYTHON_HTTP=OFF -DTRITON_ENABLE_PYTHON_GRPC=OFF -DTRITON_ENABLE_GPU=OFF -DTRITON_ENABLE_EXAMPLES=OFF -DTRITON_ENABLE_TESTS=OFF -DTRITON_COMMON_REPO_TAG=r22.04 -DTRITON_THIRD_PARTY_REPO_TAG=r22.04 ..
 
 RUN cd ~/triton-client/build && make cc-clients -j`nproc`
 

@@ -9,7 +9,7 @@ cd ~ && wget https://developer.download.nvidia.com/compute/cuda/repos/$distribut
     && sudo mv cuda-$distribution_no_dot.pin /etc/apt/preferences.d/cuda-repository-pin-600 \
     && sudo apt-key adv --fetch-keys https://developer.download.nvidia.com/compute/cuda/repos/$distribution_no_dot/x86_64/3bf863cc.pub \
     && sudo echo "deb http://developer.download.nvidia.com/compute/cuda/repos/$distribution_no_dot/x86_64 /" | tee /etc/apt/sources.list.d/cuda.list \
-    && sudo apt-get update && sudo apt-get install -y cuda-drivers-465 --no-install-recommends \
+    && sudo apt-get update && sudo apt-get install -y cuda-drivers-470 --no-install-recommends \
     || (echo 'nvidia drivers install fail' && exit 1)
 
 # nvidia-container-toolkit

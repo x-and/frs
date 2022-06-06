@@ -20,6 +20,9 @@ repo_dir=$(pwd)/../opt/model_repository
 
 # arcface
 [ ! -f "$repo_dir/arcface/1/model.plan" ] \
+	wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm= \
+		$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=1gnt6P3jaiwfevV4hreWHPu0Mive5VRyP' \
+		-O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=1gnt6P3jaiwfevV4hreWHPu0Mive5VRyP" -O $(pwd)/../opt/plan_source/arcface/glint360k_r50.onnx && rm -rf /tmp/cookies.txt \
 	&& docker run --gpus all --rm -v $(pwd)/../opt/:/opt/frs --entrypoint=bash nvcr.io/nvidia/tensorrt:21.05-py3 -c \
 		"cd /opt/frs/plan_source/arcface && trtexec --onnx=glint360k_r50.onnx --saveEngine=model.plan --optShapes=input.1:1x3x112x112 --minShapes=input.1:1x3x112x112 --maxShapes=input.1:1x3x112x112 --workspace=1500" \
 	&& mkdir -p $(pwd)/../opt/model_repository/arcface/1/ \
